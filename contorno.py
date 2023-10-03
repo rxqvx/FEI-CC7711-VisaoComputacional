@@ -1,3 +1,5 @@
+#pip install opencv-python
+
 import math
 
 import numpy as np
