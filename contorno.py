@@ -7,7 +7,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 #Importa e converta para RGB
-img = cv2.imread('./imagens/elefante.jpg')
+img = cv2.imread('./Satelite.jpeg')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
@@ -18,7 +18,7 @@ a = img_gray.max()
 _, thresh = cv2.threshold(img_gray, a/2*1.7, a,cv2.THRESH_BINARY_INV)
 
 
-tamanhoKernel = 5
+tamanhoKernel = 10
 kernel = np.ones((tamanhoKernel,tamanhoKernel), np.uint8)
 thresh_open = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
 
@@ -26,9 +26,9 @@ thresh_open = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel)
 img_blur = cv2.blur(img_gray, ksize=(tamanhoKernel,tamanhoKernel))
 
 # Detecção borda com Canny (sem blurry)
-edges_gray = cv2.Canny(image=img_gray, threshold1=a/2, threshold2=a/2)
+edges_gray = cv2.Canny(image=img_gray, threshold1=a/1, threshold2=a/1)
 # Detecção borda com Canny (com blurry)
-edges_blur = cv2.Canny(image=img_blur, threshold1=a/2, threshold2=a/2)
+edges_blur = cv2.Canny(image=img_blur, threshold1=a/10, threshold2=a/10)
 
 
 
@@ -45,6 +45,8 @@ final = cv2.drawContours(img_copy, contours, contourIdx = -1,
 
 #plot imagens
 imagens = [img,img_blur,img_gray,edges_gray,edges_blur,thresh,thresh_open,final]
+# imagens = [final]
+
 formatoX = math.ceil(len(imagens)**.5)
 if (formatoX**2-len(imagens))>formatoX:
     formatoY = formatoX-1
