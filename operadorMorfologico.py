@@ -5,20 +5,20 @@ import cv2
 import matplotlib.pyplot as plt
 
 #Importa e converta para RGB
-img = cv2.imread('./imagens/elefante.jpg')
+img = cv2.imread('Satelite.jpeg')
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 #Filtro de ruído (bluring)
-img_blur = cv2.blur(img,(5,5))
+img_blur = cv2.blur(img,(25,25))
 
 #Convertendo para preto e branco (RGB -> Gray Scale -> BW)
 img_gray = cv2.cvtColor(img_blur, cv2.COLOR_RGB2GRAY)
 a = img_gray.max()
-_, thresh = cv2.threshold(img_gray, a/2+100, a,cv2.THRESH_BINARY_INV)
+_, thresh = cv2.threshold(img_gray, a/4.5, a,cv2.THRESH_BINARY_INV)
 
 #preparando o "kernel"
-kernel = np.ones((12,12), np.uint8)
-
+num = 25
+kernel = np.ones((num,num), np.uint8)
 
 #operadores Morfologicos
 img_dilate = cv2.dilate(thresh,kernel,iterations = 1)

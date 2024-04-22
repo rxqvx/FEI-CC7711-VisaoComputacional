@@ -36,7 +36,7 @@ thresh_open = cv2.dilate(thresh,kernel,iterations = 1)
 
 # contorno
 contours, hierarchy = cv2.findContours(
-                                   image = edges_gray,
+                                   image = edges_blur,
                                    mode = cv2.RETR_TREE,
                                    method = cv2.CHAIN_APPROX_SIMPLE)
 contours = sorted(contours, key = cv2.contourArea, reverse = True)
@@ -46,8 +46,8 @@ final = cv2.drawContours(img_copy, contours, contourIdx = -1,
 
 
 #plot imagens
-imagens = [img,img_gray,img_blur,edges_gray,edges_blur,thresh,thresh_open,final]
-#imagens = [final]
+#imagens = [img,img_gray,img_blur,edges_gray,edges_blur,thresh,thresh_open,final]
+imagens = [final]
 
 formatoX = math.ceil(len(imagens)**.5)
 if (formatoX**2-len(imagens))>formatoX:

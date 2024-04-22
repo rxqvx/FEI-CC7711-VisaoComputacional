@@ -5,7 +5,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 # Carregans imagem
-img = cv2.imread('./imagens/FEI01.jpg')
+img = cv2.imread('Satelite.jpeg')
 
 
 # Convertendo espaço de cores
@@ -15,7 +15,7 @@ img_hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 img_hls = cv2.cvtColor(img, cv2.COLOR_BGR2HLS)
 
 #plot imagens
-imagens = [img_rgb,img_gray,img_hsv,img_hls]
+imagens = [img_gray]
 
 for i in range(4):
     plt.subplot(2,2,i+1)
